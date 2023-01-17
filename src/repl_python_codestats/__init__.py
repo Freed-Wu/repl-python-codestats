@@ -75,10 +75,10 @@ class CodeStats:
         :type language_type: str
         :rtype: None
         """
-        self.xp_dict = {self.language_type: 0}
         self.url = url
         self.api_key = api_key
         self.language_type = language_type
+        self.xp_dict = {language_type: 0}
 
         self.sem = threading.Semaphore()
 

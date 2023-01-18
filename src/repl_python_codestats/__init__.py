@@ -122,7 +122,7 @@ class CodeStats:
         }
 
         # after lock is released we can send the payload
-        utc_now = datetime.now().isoformat()
+        utc_now = datetime.now().astimezone().isoformat()
         pulse_json = json.dumps(
             {"coded_at": "{0}".format(utc_now), "xps": xp_list}
         ).encode("utf-8")

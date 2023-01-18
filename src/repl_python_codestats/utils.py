@@ -4,6 +4,7 @@
 import logging
 
 import keyring
+from keyring.errors import NoKeyringError
 
 logger = logging.getLogger(__name__)
 KEYRING = keyring.get_keyring()
@@ -21,8 +22,12 @@ def get_api_key(
     :type user_name: str
     :rtype: str
     """
-    password = KEYRING.get_password(service_name, user_name)
-    if password:
+    try:
+        password = KEYRING.get_password(service_name, user_name)
+    except NoKeyringError:
+        logger.error("no installed backend!")
+        return ""
+    if not password:
         logger.error(service_name + "/" + user_name + "has no password!")
-        return password
-    return ""
+        return ""
+    return password

@@ -19,7 +19,6 @@ from ._version import __version__, __version_tuple__  # type: ignore
 logger = logging.getLogger(__name__)
 INTERVAL = 10  # interval at which stats are sent
 SLEEP_INTERVAL = 0.1  # sleep interval for timeslicing
-VERSION = "1.2.0"  # versioning
 TIMEOUT = 2  # request timeout value (in seconds)
 
 codestats = None
@@ -116,7 +115,7 @@ class CodeStats:
 
         headers = {
             "Content-Type": "application/json",
-            "User-Agent": "code-stats-python/{0}".format(VERSION),
+            "User-Agent": "code-stats-python/{0}".format(__version__),
             "X-API-Token": self.api_key,
             "Accept": "*/*",
         }
